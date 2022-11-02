@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vm="clr-namespace:RentMVVM.ViewModel"
+        xmlns:menu="clr-namespace:RentMVVM.Utilites"
         Title="MainWindow" 
         Height="720" 
         Width="1080" 
@@ -11,6 +12,10 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
 
+    <Window.DataContext>
+        <vm:NavigationVM/>
+    </Window.DataContext>
+    
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
@@ -78,65 +83,60 @@
                                    Background="#7e5fdc"/>
 
                         <StackPanel DockPanel.Dock="Top">
-                            <Button Style="{StaticResource menuButton}"
-                                    HorizontalAlignment="Stretch">
+                            <menu:Btn Style="{StaticResource menuButton}"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding HomeCommand}"
+                                    IsChecked ="True">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Home" 
                                                            Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Домашняя"/>
                                 </StackPanel>
-                            </Button>
+                            </menu:Btn>
 
-                            <Button Style="{StaticResource menuButton}"
-                                    HorizontalAlignment="Stretch">
+                            <menu:Btn Style="{StaticResource menuButton}"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding UsersCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HumanFemaleDance" 
                                                            Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Пользователи"/>
                                 </StackPanel>
-                            </Button>
+                            </menu:Btn>
 
-                            <Button Style="{StaticResource menuButton}" 
-                                    HorizontalAlignment="Stretch">
+                            <menu:Btn Style="{StaticResource menuButton}" 
+                                      HorizontalAlignment="Stretch"
+                                      Command="{Binding EquipmentsCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Ethernet"
                                                            Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Оборудование"/>
                                 </StackPanel>
-                            </Button>
+                            </menu:Btn>
 
-                            <Button Style="{StaticResource menuButton}"
-                                    HorizontalAlignment="Stretch">
+                            <menu:Btn Style="{StaticResource menuButton}"
+                                      HorizontalAlignment="Stretch"
+                                      Command="{Binding OrdersCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FileDocumentEdit"
                                                            Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Заказы"/>
                                 </StackPanel>
-                            </Button>
+                            </menu:Btn>
                         </StackPanel>
 
 
-                        <Button Style="{StaticResource menuButton}"
+                        <menu:Btn Style="{StaticResource menuButton}"
                                 DockPanel.Dock="Bottom" 
                                 Margin="15 0 15 20" 
-                                HorizontalAlignment="Stretch">
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="ExitToApp" 
                                                        Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Выход"/>
                             </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource menuButton}" 
-                                DockPanel.Dock="Bottom" 
-                                VerticalAlignment="Bottom" 
-                                Margin="15 0 15 0"
-                                HorizontalAlignment="Stretch" >
-                            <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="Cog" 
-                                                       Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Настройки"/>
-                            </StackPanel>
-                        </Button>
+                        </menu:Btn>
                     </DockPanel>
                 </Border>
             </Grid>
@@ -160,7 +160,7 @@
                                Foreground="#b0b9c6" 
                                IsHitTestVisible="False"
                                Panel.ZIndex="1" 
-                               Text="Искать тута..." 
+                               Text="Искать здеся..." 
                                Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
 
                     <TextBox x:Name="txtSearch" 
@@ -194,7 +194,7 @@
                 
                 
                 <ContentControl Grid.Row="1" x:Name="Pages"
-                                />
+                                Content="{Binding CurrentView}"/>
 
             </Grid>
 

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentMVVM.ViewModel
+namespace RentMVVM.Model
 {
-    internal class UsersVM
+    internal class Users
     {
-
     }
 }
