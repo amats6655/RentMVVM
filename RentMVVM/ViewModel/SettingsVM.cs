@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RentMVVM.ViewModel
 {
-    internal class SettingsVM
+    internal class SettingsVM : Utilites.ViewModelBase
     {
     }
 }

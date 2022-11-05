@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RentMVVM.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace RentMVVM
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -41,8 +44,8 @@ namespace RentMVVM
                 if (IsMaximazed)
                 {
                     this.WindowState = WindowState.Normal;
-                    this.Width = 1080;
-                    this.Height = 720;
+                    this.Width = 1200;
+                    this.Height = 900;
 
                     IsMaximazed = false;
                 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RentMVVM.Model;
 
 namespace RentMVVM.ViewModel
 {
-    internal class UsersVM
+    class UsersVM : Utilites.ViewModelBase
     {
 
     }

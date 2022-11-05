@@ -78,7 +78,7 @@
                                IsHitTestVisible="False"
                                Panel.ZIndex="1" 
                                Text="Искать здеся..." />
-            
+
 
             <TextBox x:Name="txtFilter" 
                              Style="{StaticResource textBoxFilter}"/>
@@ -91,7 +91,6 @@
                                            Foreground="#b0b9c6" 
                                            HorizontalAlignment="Right"/>
         </Grid>
-
         <!--USERS DATAGRID-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" 
                   CellStyle="{DynamicResource DataGridCellStyle1}" 
@@ -99,13 +98,14 @@
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
                   Grid.ColumnSpan="3" 
                   Grid.Row="3"
-                  x:Name="UsersDataGrid">
+                  x:Name="UsersDataGrid" AutoGenerateColumns="False">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
                                     IsReadOnly="True"
                                     CanUserResize="False"
-                                    Width="Auto"/>
+                                    Width="70"
+                                    Binding="{Binding id}"/>
                 
                 <DataGridTemplateColumn Header="Имя"
                                         IsReadOnly="True"
@@ -118,15 +118,16 @@
                                         Height="25"
                                         CornerRadius="50"
                                         Margin="0 0 10 0"
-                                        Background="Red">
-                                    <TextBlock Text="..."
+                                        Background="{Binding BgColor}">
+                                    <TextBlock Text="{Binding Character}"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"
                                                Foreground="White"
-                                               Margin="0 0 0 1"/>
+                                               Margin="0 2 0 0"
+                                               />
                                 </Border>
 
-                                <TextBlock Text="..." VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding name}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -134,12 +135,15 @@
                 
                 <DataGridTextColumn Header="Телефон"
                                     IsReadOnly="True"
-                                    Width="*"/>
+                                    Width="*"
+                                    Binding="{Binding phone}"/>
 
                 <DataGridCheckBoxColumn Header="Долг"
                                         CanUserResize="False"
                                         Width="*"
-                                        IsReadOnly="True">
+                                        IsReadOnly="True"
+                                        ElementStyle="{StaticResource CheckBoxStyle1}"
+                                        Binding="{Binding debt}">
                 </DataGridCheckBoxColumn>
 
                 <DataGridTemplateColumn Header="Операции"
@@ -152,7 +156,8 @@
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>
-                                <Button Style="{StaticResource gridRemoveButton}">
+                                <Button Style="{StaticResource gridRemoveButton}"
+                                        Margin="5 0 0 0">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="DeleteOutline"/>
                                 </Button>
@@ -179,21 +184,10 @@
                     Background="#7950f2"
                     Foreground="White"/> 
             <Button Style="{StaticResource pagingButton}"
-                    Content="2"/>
+                    Content="2" Click="Button_Click_num2"/>
             <Button Style="{StaticResource pagingButton}"
                     Content="3"/>
-            <TextBlock Text="..." 
-                       Foreground="#6c7682" 
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Margin="10 0"/>
-            <Button Style="{StaticResource pagingButton}"
-                    Content="7"/>
-            <Button Style="{StaticResource pagingButton}"
-                    Content="8"/>
-            <Button Style="{StaticResource pagingButton}"
-                    Content="9"/>
-                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+            <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
                 <Button Style="{StaticResource pagingButton}">
                 <Icon:PackIconMaterial Kind="ChevronRight"
                                        Style="{StaticResource pagingButtonIcon}"/>
