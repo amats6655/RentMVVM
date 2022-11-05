@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:RentMVVM.View"
              xmlns:vm="clr-namespace:RentMVVM.ViewModel"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="615" d:DesignWidth="830"
              Background="Transparent">
@@ -13,7 +14,7 @@
     <UserControl.DataContext>
         <vm:UsersVM/>
     </UserControl.DataContext>
-    
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -43,6 +44,7 @@
                                        Height="11"
                                        Margin="5 0 8 1"/>
                 <TextBlock Text="Новый пользователь"
+                           HorizontalAlignment="Right"
                            FontSize="12"
                            FontFamily="Style/#LabGrotesque-Medium"/>
             </StackPanel>
@@ -91,6 +93,8 @@
                                            Foreground="#b0b9c6" 
                                            HorizontalAlignment="Right"/>
         </Grid>
+
+
         <!--USERS DATAGRID-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" 
                   CellStyle="{DynamicResource DataGridCellStyle1}" 
@@ -100,13 +104,8 @@
                   Grid.Row="3"
                   x:Name="UsersDataGrid" AutoGenerateColumns="False">
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID"
-                                    IsReadOnly="True"
-                                    CanUserResize="False"
-                                    Width="70"
-                                    Binding="{Binding id}"/>
-                
+        <DataGrid.Columns>
+
                 <DataGridTemplateColumn Header="Имя"
                                         IsReadOnly="True"
                                         CanUserResize="False"
@@ -140,7 +139,7 @@
 
                 <DataGridCheckBoxColumn Header="Долг"
                                         CanUserResize="False"
-                                        Width="*"
+                                        Width="auto"
                                         IsReadOnly="True"
                                         ElementStyle="{StaticResource CheckBoxStyle1}"
                                         Binding="{Binding debt}">

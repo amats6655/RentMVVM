@@ -50,6 +50,16 @@ namespace RentMVVM.Utilites
                 BgColor = (Brush)converter.ConvertFromString("#ff6d00");
                 return BgColor;
             }
+            if (character == 'D')
+            {
+                BgColor = (Brush)converter.ConvertFromString("#DC143C");
+                return BgColor;
+            }
+            if (character == 'R')
+            {
+                BgColor = (Brush)converter.ConvertFromString("#90ee90");
+                return BgColor;
+            }
             else return _ = (Brush)converter.ConvertFromString("#1098ad");
         }
     }

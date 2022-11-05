@@ -7,7 +7,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:vm="clr-namespace:RentMVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="615" d:DesignWidth="830">
     <UserControl.DataContext>
         <vm:EquipmentsVM/>
     </UserControl.DataContext>
@@ -23,12 +23,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--PageTitle-->
 
-        <TextBlock Text="Оборудвоание"
+        <TextBlock Text="Оборудование"
                    Style="{StaticResource titleText_Style}"/>
 
         <!--Add Button-->
@@ -41,6 +41,7 @@
                                        Height="11"
                                        Margin="5 0 8 1"/>
                 <TextBlock Text="Новое оборудование"
+                           HorizontalAlignment="Right"
                            FontSize="12"
                            FontFamily="Style/#LabGrotesque-Medium"/>
             </StackPanel>
@@ -91,10 +92,85 @@
         </Grid>
 
         <!--USERS DATAGRID-->
+        <DataGrid Style="{DynamicResource DataGridStyle1}" 
+                  CellStyle="{DynamicResource DataGridCellStyle1}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                  RowStyle="{DynamicResource DataGridRowStyle1}" 
+                  Grid.ColumnSpan="3" 
+                  Grid.Row="3"
+                  x:Name="EquipmentsDataGrid" AutoGenerateColumns="False">
 
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Тип"
+                                    IsReadOnly="True"
+                                    Width="*"
+                                    Binding="{Binding type}"/>
+
+
+                <DataGridTextColumn Header="Модель"
+                                    IsReadOnly="True"
+                                    Width="*"
+                                    Binding="{Binding model}"/>
+
+                <DataGridTextColumn Header="Количество"
+                                    IsReadOnly="True"
+                                    Width="auto"
+                                    Binding="{Binding amt}"/>
+
+                <DataGridTextColumn Header="Остаток"
+                                    IsReadOnly="True"
+                                    Width="auto"
+                                    Binding="{Binding rem}"/>
+
+
+                <DataGridTemplateColumn Header="Операции"
+                                        IsReadOnly="True"
+                                        Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource gridEditButton}">
+                                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
+                                                           Kind="PencilOutline"/>
+                                </Button>
+                                <Button Style="{StaticResource gridRemoveButton}"
+                                        Margin="5 0 0 0">
+                                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
+                                                           Kind="DeleteOutline"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
         <!--Pagination Section-->
-        <Border Style="{StaticResource paginationBorder}"/>
-
-
+        <Border Grid.Row="4"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Right" 
+                Style="{StaticResource paginationBorder}">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource pagingButton}">
+                    <Icon:PackIconMaterial Kind="ChevronLeft"
+                                       Style="{StaticResource pagingButtonIcon}"/>
+                </Button>
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                <Button Style="{StaticResource pagingButton}"
+                    Content="1"
+                    Background="#7950f2"
+                    Foreground="White"/>
+                <Button Style="{StaticResource pagingButton}"
+                    Content="2"/>
+                <Button Style="{StaticResource pagingButton}"
+                    Content="3"/>
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                <Button Style="{StaticResource pagingButton}">
+                    <Icon:PackIconMaterial Kind="ChevronRight"
+                                       Style="{StaticResource pagingButtonIcon}"/>
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

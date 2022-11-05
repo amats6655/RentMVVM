@@ -16,6 +16,47 @@
 
 
     <Grid>
+
+
+        <Grid.Resources>
+            <DataTemplate x:Key="RowDetailsTemplate">
+                <StackPanel>
+                    <TextBlock Margin="20" FontSize="16" Text="Детали заказа: " />
+                    <Grid Margin="20,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Text="Тип: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="1" Text="Модель: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="2" Text="Дата выдачи: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="3" Text="Количество: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="40 0 0 0" Text="Пользователь: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="40 0 0 0" Text="Телефон: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="2" Grid.Column="2" Margin="40 0 0 0" Text="Дата возврата: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding type}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding model}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" Text="{Binding date_issue}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding amount}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding name}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding phone}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding date_return}" HorizontalAlignment="Right" />
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
@@ -44,7 +85,7 @@
                                        Margin="5 0 8 1"/>
                 <TextBlock Text="Новый заказ"
                            FontSize="12"
-                           FontFamily="Style/#LabGrotesque-Medium"/>
+                           FontFamily="Fonts/#LabGrotesque-Medium"/>
             </StackPanel>
         </Button>
 
@@ -99,15 +140,14 @@
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
                   Grid.ColumnSpan="3" 
                   Grid.Row="3"
-                  x:Name="UsersDataGrid">
+                  x:Name="OrdersDataGrid"
+                  RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
+                  RowDetailsVisibilityMode="VisibleWhenSelected"
+                  SelectionMode="Extended">
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID"
-                                    IsReadOnly="True"
-                                    CanUserResize="False"
-                                    Width="Auto"/>
 
-                <DataGridTemplateColumn Header="Тип"
+                <DataGridTemplateColumn Header="Статус"
                                         IsReadOnly="True"
                                         CanUserResize="False"
                                         Width="*">
@@ -118,15 +158,10 @@
                                         Height="25"
                                         CornerRadius="50"
                                         Margin="0 0 10 0"
-                                        Background="Red">
-                                    <TextBlock Text="..."
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Foreground="White"
-                                               Margin="0 0 0 1"/>
+                                        Background="{Binding BgColor}">
                                 </Border>
 
-                                <TextBlock Text="..." VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Status}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -134,25 +169,19 @@
 
                 <DataGridTextColumn Header="Модель"
                                     IsReadOnly="True"
-                                    Width="*"/>
-
+                                    Width="*"
+                                    Binding="{Binding model}"/>
+                
+                <DataGridTextColumn Header="Дата выдачи"
+                                    IsReadOnly="True"
+                                    Width="*"
+                                    Binding="{Binding date_issue}"/>
+                
                 <DataGridTextColumn Header="Количество"
                                     IsReadOnly="True"
-                                    Width="*"/>
+                                    Width="*"
+                                    Binding="{Binding amount}"/>
 
-                <DataGridTextColumn Header="Дата Выдачи"
-                                    IsReadOnly="True"
-                                    Width="*"/>
-
-                <DataGridTextColumn Header="Модель"
-                                    IsReadOnly="True"
-                                    Width="*"/>
-
-                <DataGridCheckBoxColumn Header="Вернул"
-                                        CanUserResize="False"
-                                        Width="*"
-                                        IsReadOnly="True">
-                </DataGridCheckBoxColumn>
 
                 <DataGridTemplateColumn Header="Операции"
                                         IsReadOnly="True"
@@ -164,7 +193,8 @@
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>
-                                <Button Style="{StaticResource gridRemoveButton}">
+                                <Button Style="{StaticResource gridRemoveButton}"
+                                        Margin="5 0 0 0">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="DeleteOutline"/>
                                 </Button>
@@ -194,17 +224,6 @@
                     Content="2"/>
                 <Button Style="{StaticResource pagingButton}"
                     Content="3"/>
-                <TextBlock Text="..." 
-                       Foreground="#6c7682" 
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       Margin="10 0"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="7"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="8"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="9"/>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
                 <Button Style="{StaticResource pagingButton}">
                     <Icon:PackIconMaterial Kind="ChevronRight"

@@ -35,26 +35,5 @@ namespace RentMVVM
                 this.DragMove();
             }
         }
-
-        private bool IsMaximazed = false;
-        private void Border_LeftMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if (IsMaximazed)
-                {
-                    this.WindowState = WindowState.Normal;
-                    this.Width = 1200;
-                    this.Height = 900;
-
-                    IsMaximazed = false;
-                }
-                else
-                {
-                    this.WindowState = WindowState.Maximized;
-                    IsMaximazed = true;
-                }
-            }
-        }
     }
 }

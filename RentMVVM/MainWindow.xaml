@@ -22,8 +22,7 @@
 
     <Border Background="#eff2f7"
                 CornerRadius="30"
-                MouseDown="Border_MouseDown"
-                MouseLeftButtonDown="Border_LeftMouseDown">
+                MouseDown="Border_MouseDown">
         
 
         <Grid>

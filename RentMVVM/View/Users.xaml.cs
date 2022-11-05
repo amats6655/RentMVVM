@@ -37,7 +37,6 @@ namespace RentMVVM.View
         public Users()
         {
             InitializeComponent();
-            var converter = new BrushConverter();
 
             connectionString = ConfigurationManager.ConnectionStrings["equipmentDbConnect"].ConnectionString;
             getUsersFirst = "SELECT * " +
@@ -45,8 +44,6 @@ namespace RentMVVM.View
                        "ORDER BY id " +
                        "OFFSET 0 ROWS " +
                        "FETCH NEXT 999 ROWS ONLY;";
-
-
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
