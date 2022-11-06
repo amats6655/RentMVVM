@@ -9,11 +9,13 @@ namespace RentMVVM.Model
 {
     internal class User
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        public int UserId { get; set; }
+        public string Name { get; set; }
         public string Phone { get; set; }
-        public bool debt { get; set; }  
+        public bool Debt { get; set; }  
         public Brush BgColor { get; set; }
-        public string character { get; set; }
+        public string Character { get; set; }
+        public Order OrderId { get; set; }
     }
 }
+

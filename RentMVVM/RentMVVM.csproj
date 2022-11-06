@@ -83,17 +83,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DataWorker.cs" />
+    <Compile Include="Model\Equipment.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Type.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Utilites\GetBrush.cs" />
     <Compile Include="Utilites\Btn.cs" />
     <Compile Include="Utilites\RelayCommand.cs" />
     <Compile Include="Utilites\ViewModelBase.cs" />
+    <Compile Include="ViewModel\AddEquipmentVM.cs" />
+    <Compile Include="ViewModel\AddOrderVM.cs" />
+    <Compile Include="ViewModel\AddUserVM.cs" />
+    <Compile Include="ViewModel\DataManageVM.cs" />
     <Compile Include="ViewModel\EquipmentsVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
     <Compile Include="ViewModel\OrdersVM.cs" />
     <Compile Include="ViewModel\SettingsVM.cs" />
     <Compile Include="ViewModel\UsersVM.cs" />
+    <Compile Include="View\AddEquipment.xaml.cs">
+      <DependentUpon>AddEquipment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddOrder.xaml.cs">
+      <DependentUpon>AddOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Equipments.xaml.cs">
       <DependentUpon>Equipments.xaml</DependentUpon>
     </Compile>
@@ -109,7 +126,23 @@
     <Compile Include="View\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Styles\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddEquipment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -117,7 +150,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -188,7 +221,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="RentMVVM_TemporaryKey.pfx" />
     <Resource Include="Fonts\LabGrotesque-Black.otf" />
     <Resource Include="Fonts\LabGrotesque-Light.otf" />
     <Resource Include="Fonts\LabGrotesque-Medium.ttf" />

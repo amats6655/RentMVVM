@@ -1,7 +1,5 @@
-﻿using RentMVVM.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,21 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RentMVVM
+namespace RentMVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AddOrder.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddOrder : Window
     {
-        public MainWindow()
+        public AddOrder()
         {
             InitializeComponent();
-
         }
+
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

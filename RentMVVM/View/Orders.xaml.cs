@@ -72,5 +72,11 @@ namespace RentMVVM.View
 
 
         }
+
+        private void Add_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrder addOrder = new AddOrder();
+            addOrder.ShowDialog();
+        }
     }
 }

@@ -55,5 +55,12 @@ namespace RentMVVM.View
 
 
         }
+
+
+        private void Add_Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddEquipment addEquipment = new AddEquipment();
+            addEquipment.ShowDialog();
+        }
     }
 }
